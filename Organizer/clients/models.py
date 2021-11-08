@@ -12,3 +12,4 @@ class Clients(models.Model):
     address = models.CharField(max_length=50)
     user_name = models.CharField(max_length=40)
     password = models.CharField(max_length=40)
+    

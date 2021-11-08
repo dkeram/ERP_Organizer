@@ -1,20 +1,25 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
+from .tables import ListClient
 from .models import Clients
 from .forms import RegisterForm,UserForm
-
+from django_tables2 import SingleTableView
 
 # Create your views here.
 
 def main(request):
     return redirect('accounts/login/')
 
-
-def home(request):
-    clients = Clients.objects.all()
-    num = {"client_number" : clients }
-    return render(request,'clients/home.html',num)
-
+class ViewList(SingleTableView):
+        table_class = ListClient
+        username = ListClient.selection('user_name')
+        passwrd = ListClient.selection('password')
+        queryset = Clients.objects.all()
+        template_name = 'clients/home.html'
+#def home(request):
+    #clients = Clients.objects.all()
+    #num = {"client_number" : clients }
+    #return render(request,'clients/home.html',num)    
 
 def register(request):
     registration_form = RegisterForm(request.POST)
