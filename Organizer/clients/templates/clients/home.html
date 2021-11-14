@@ -12,7 +12,9 @@
     <button><a href="/register/">Προσθήκη Εταιρείας</a></button>
     <button><a href="/newuser/">Προσθήκη Χρήστη</a></button>
     <form action="/home/" method="post">
-    {% render_table table %}
+        {% csrf_token %}
+        {% render_table table %}
+    <input type="submit"/>
     </form>
 </body>
 </html>
