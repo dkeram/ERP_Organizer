@@ -1,3 +1,5 @@
+from subprocess import DETACHED_PROCESS
+from xml.dom.minidom import Element
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from .tables import ListClient
@@ -5,6 +7,8 @@ from .models import Clients
 from .forms import RegisterForm,UserForm
 from django_tables2 import SingleTableView
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.edge.options import Options
 import time
 # Create your views here.
 
@@ -26,14 +30,17 @@ def home(request):
                 driver=webdriver.Edge(r"C:\Users\User\Documents\pske_system\Organizer\Organizer\msedgedriver.exe")
                 driver.maximize_window()
                 driver.get("https://www.ependyseis.gr/mis/(S(towin1m0zsp4ner5yxb5ofdw))/System/Login.aspx?ReturnUrl=%2fmis%2f")
-                username_input_box=driver.find_element_by_name("LoginControl1$txtLoginName")
-                password_input_box=driver.find_element_by_name("LoginControl1$txtPassword")
-                login_button=driver.find_element_by_name("LoginControl1$btnLogin")
+                username_input_box=driver.find_element(By.NAME,"LoginControl1$txtLoginName")
+                password_input_box=driver.find_element(By.NAME,"LoginControl1$txtPassword")
+                login_button=driver.find_element(By.NAME,"LoginControl1$btnLogin")
                 username_input_box.send_keys(onoma)
                 time.sleep(0.5)
                 password_input_box.send_keys(kodikos)
                 time.sleep(0.5)
                 login_button.click()
+                edge_options = Options()
+                edge_options.add_experimental_option("detach", True)
+                time.sleep(9000)
     return render(request,'clients/home.html', {'table':queryset})    
 
 def register(request):

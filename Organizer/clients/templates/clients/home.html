@@ -1,4 +1,5 @@
 {% load render_table from django_tables2 %}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,17 +7,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ΠΣΚΕ System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </head>
 <body>
-    <button><a href="/register/">Προσθήκη Εταιρείας</a></button>
-    <button><a href="/newuser/">Προσθήκη Χρήστη</a></button>
-    <form action="/home/" method="post">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+              <img src="{% static 'images/logo.png'%}" alt="PSKE System" width="300" height="133">
+            </a>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/register/">Προσθήκη Εταιρείας</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/newuser/">Προσθήκη Χρήστη</a>
+              </li>
+              </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <form action="" method="post">
         {% csrf_token %}
-        {% render_table table %}
-    <input type="submit"/>
-    <input type="button" id='edit_btn' value='Edit'/>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Επίθετο</th>
+                <th scope="col">Όνομα</th>
+                <th scope="col">ΑΦΜ</th>
+                <th scope="col">Τηλέφνωο</th>
+                <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.sirname }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.vat}}</td>
+                        <td>{{ item.phone}}</td>
+                        <td>{{ item.email}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </form>
 <script>
     $(function() {
