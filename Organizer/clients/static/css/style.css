@@ -1,3 +1,17 @@
+body{
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: auto;
+
+}
 .clickable{
     cursor: pointer;
+}
+
+.actions{
+    visibility: hidden;
+}
+
+.actions:hover{
+    visibility: visible;
 }

@@ -10,15 +10,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link href="{%static 'css/style.css'%}" rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4537ef35df.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <img src="{% static 'images/logo.png'%}" alt="PSKE System" width="300" height="133">
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/home/">Αρχική</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/register/">Προσθήκη Εταιρείας</a>
               </li>
@@ -52,6 +54,7 @@
                         <td>{{ item.vat}}</td>
                         <td>{{ item.phone}}</td>
                         <td>{{ item.email}}</td>
+                        <td class='actions'><i class="fa-solid fa-pen-to-square"></i> <i class="fa-solid fa-share"></i> <i class="fa-solid fa-trash-can"></i></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -62,7 +65,9 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" text-align="center">Loading...</h5>
+            <div class="text-center">
+              <h5 class="modal-title">Παρακαλώ Περιμένετε...</h5>
+            </div>
           </div>
           <div class="modal-body">
             <div class="text-center">
