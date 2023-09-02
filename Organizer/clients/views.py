@@ -46,6 +46,3 @@ def new_user(request):
             form.save()
             return HttpResponseRedirect('/home/')
     return render(request,'clients/newuser.html',{'form':form})
-
-#def edit_client(request,client_id):
-    return render(request, )
